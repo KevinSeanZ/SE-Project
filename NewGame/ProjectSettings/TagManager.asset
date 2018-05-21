@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TriggerArea
+  - TriggerArea1
+  - TriggerArea2
+  - ObserveCamera
   layers:
   - Default
   - TransparentFX

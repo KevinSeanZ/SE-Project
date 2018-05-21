@@ -54,9 +54,35 @@
      <Compile Include="Assets\_Scripts\AnClkBt.cs" />
      <Compile Include="Assets\_Scripts\ButtonMove.cs" />
      <Compile Include="Assets\_Scripts\ButtonSet.cs" />
+     <Compile Include="Assets\_Scripts\cancel.cs" />
+     <Compile Include="Assets\_Scripts\CanvasSetting.cs" />
+     <Compile Include="Assets\_Scripts\CanvasTest.cs" />
+     <Compile Include="Assets\_Scripts\ClickBox.cs" />
+     <Compile Include="Assets\_Scripts\ensure.cs" />
+     <Compile Include="Assets\_Scripts\FirstPersonController.cs" />
+     <Compile Include="Assets\_Scripts\HeadBob.cs" />
+     <Compile Include="Assets\_Scripts\load_settings.cs" />
+     <Compile Include="Assets\_Scripts\MainCanvasSet.cs" />
+     <Compile Include="Assets\_Scripts\MouseLook.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
+     <Compile Include="Assets\_Scripts\RigidbodyFirstPersonController.cs" />
      <Compile Include="Assets\_Scripts\Rotate.cs" />
      <Compile Include="Assets\_Scripts\RotateBall.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\AxisTouchButton.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\ButtonHandler.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\CrossPlatformInputManager.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\InputAxisScrollbar.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\Joystick.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\MobileControlRig.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\PlatformSpecific\MobileInput.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\PlatformSpecific\StandaloneInput.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\TiltInput.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\TouchPad.cs" />
+     <Compile Include="Assets\_Scripts\Scripts\VirtualInput.cs" />
+     <Compile Include="Assets\_Scripts\toggle1.cs" />
+     <Compile Include="Assets\_Scripts\Volume.cs" />
+     <Compile Include="Assets\LightFliker.cs" />
+     <None Include="Assets\config.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/大二下/软件工程/assignment/NewGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

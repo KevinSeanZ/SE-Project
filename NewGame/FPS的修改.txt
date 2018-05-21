@@ -1,0 +1,23 @@
+1、在MouseLook.cs中的InternalLockUpdate函数内加上如下代码：
+            if (Input.GetMouseButtonUp(0) && m_cursorIsLocked)
+            {
+                m_cursorIsLocked = false;
+            }
+            else if(Input.GetMouseButtonUp(1))
+            {
+                m_cursorIsLocked = true;
+            }
+    在LookRotation函数开头，加上如下代码：
+            if (Cursor.visible) return;
+
+    以上改动：左键点出鼠标，右键鼠标隐藏，鼠标出现情况下镜头不会旋转。
+
+2、在FirstPersonController.cs中的FixedUpdate中，加入如下代码：
+	    开头:
+	    float speed;
+            bool istalking = mcs.istalking;
+	在desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;一句后：
+	    if (istalking) speed = 0;
+    其中mcs为该场景的主canvas（overlay），istalking为其中的一个public变量，表示是否在对话中。因此还需在代码开头加上相应的赋值。
+
+    以上改动：在对话进行中，无法移动。

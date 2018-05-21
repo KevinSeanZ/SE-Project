@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class ButtonSet : MonoBehaviour {
     
     private Button begingamebt;
-    
-	// Use this for initialization
-	void Start () {
-            
+    private Button settingbt;
+    // Use this for initialization
+    void Start() {
+
         begingamebt = GameObject.Find("Canvas/BeginGameBt").GetComponent<Button>();
-        
+        settingbt = GameObject.Find("Canvas/GameSetBt").GetComponent<Button>();
         begingamebt.onClick.AddListener(BeginNewGame);
+        settingbt.onClick.AddListener(SetGame);
 	}
 	
 	// Update is called once per frame
@@ -24,5 +25,10 @@ public class ButtonSet : MonoBehaviour {
     void  BeginNewGame()
     {
         SceneManager.LoadScene("Stage_1_Scene_1");
+    }
+
+    void SetGame()
+    {
+        SceneManager.LoadScene("GUI_settings");
     }
 }
