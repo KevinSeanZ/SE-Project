@@ -61,6 +61,7 @@
      <Compile Include="Assets\_Scripts\ensure.cs" />
      <Compile Include="Assets\_Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\_Scripts\HeadBob.cs" />
+     <Compile Include="Assets\_Scripts\LightFliker.cs" />
      <Compile Include="Assets\_Scripts\load_settings.cs" />
      <Compile Include="Assets\_Scripts\MainCanvasSet.cs" />
      <Compile Include="Assets\_Scripts\MouseLook.cs" />
@@ -81,7 +82,9 @@
      <Compile Include="Assets\_Scripts\Scripts\VirtualInput.cs" />
      <Compile Include="Assets\_Scripts\toggle1.cs" />
      <Compile Include="Assets\_Scripts\Volume.cs" />
-     <Compile Include="Assets\LightFliker.cs" />
+     <Compile Include="Assets\ActiveScene.cs" />
+     <Compile Include="Assets\Solve9Puzzle.cs" />
+     <Compile Include="Assets\StartItem.cs" />
      <None Include="Assets\config.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/大二下/软件工程/assignment/NewGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

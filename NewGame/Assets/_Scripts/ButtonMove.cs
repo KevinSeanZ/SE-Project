@@ -8,6 +8,7 @@ public class ButtonMove : MonoBehaviour {
     private Vector3 offset;
 	// Use this for initialization
 	void Start () {
+        
         offset = this.transform.position - followball.transform.position;
 
 	}
