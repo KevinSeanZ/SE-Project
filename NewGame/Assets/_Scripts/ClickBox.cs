@@ -9,10 +9,12 @@ public class ClickBox : MonoBehaviour {
     public Button[] numberbt = new Button[10];
     public Button ensurebt;
     public Button cancelbt;
+    public GameObject fps1;
     private Button observebt;
     private bool isTrigger;
     private Canvas codeboxCanvas;
     private Text codenumbers;
+    public bool levelclear = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,11 +24,11 @@ public class ClickBox : MonoBehaviour {
         observebt = GameObject.Find("Canvas/EyeBt").GetComponent<Button>();
         codeboxCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         codenumbers = GameObject.Find("Canvas/CodeNum").GetComponent<Text>();
+        fps1.SetActive(true);
         
         //At first, player cannot see the observebt until he gets close enough.
         observebt.gameObject.SetActive(false);
-        observeCamera.GetComponent<AudioListener>().enabled = false;
-        observeCamera.GetComponent<Camera>().enabled = false;
+        
 
         //button clicked
         cancelbt.onClick.AddListener(CancelBt);
@@ -42,7 +44,7 @@ public class ClickBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        isTrigger = GameObject.Find("FPSController").GetComponent<PlayerController>().isTrigger2;
+        isTrigger = fps1.GetComponent<PlayerController>().isTrigger2;
         //Only when current camera is MainCamera, can cancelbt be clicked
         if (mainCamera.GetComponent<Camera>().isActiveAndEnabled)
         {
@@ -75,7 +77,13 @@ public class ClickBox : MonoBehaviour {
 
     void EnsureBt()
     {
-        Debug.Log("Ensure!");
+        //Debug.Log("Ensure!");
+        if (codenumbers.text == "5421")
+        {
+            levelclear = true;
+            Debug.Log("congratulations!");
+        }
+        else codenumbers.text = "";
     }
 
     void IthBt(int i)
@@ -90,6 +98,7 @@ public class ClickBox : MonoBehaviour {
         observeCamera.GetComponent<Camera>().enabled = true;
         mainCamera.GetComponent<AudioListener>().enabled = false;
         mainCamera.GetComponent<Camera>().enabled = false;
+        fps1.SetActive(false);
         codeboxCanvas.worldCamera = observeCamera.GetComponent<Camera>();
     }
 }

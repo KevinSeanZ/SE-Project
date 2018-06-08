@@ -8,6 +8,9 @@ TagManager:
   - TriggerArea2
   - ObserveCamera
   - MainCamera1
+  - trigger2
+  - trigger1
+  - ObsereDiary
   layers:
   - Default
   - TransparentFX

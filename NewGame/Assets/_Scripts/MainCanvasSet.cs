@@ -7,11 +7,17 @@ public class MainCanvasSet : MonoBehaviour {
     private bool ismainCam = true;
     private bool isbegin = false;
     private GameObject mainCamera;
+    private GameObject diaryCamera;
     private GameObject observeCamera;
+    private GameObject S3Camera;
     private GameObject trigger1;
     private Canvas codeboxCanvas;
     //private float timer = 0.0f;
-
+    public GameObject fps1;
+    public GameObject fps2;
+    private ClickBox codebox;
+    private bool levelclear;
+    //public GameObject problemcacnvas;
     public int m_millisecond;
     public int m_second;
     public int m_minute;
@@ -19,25 +25,53 @@ public class MainCanvasSet : MonoBehaviour {
 
     public bool istalking = false;
     // Use this for initialization
+
+    
+
     void Start () {
+        //problemcacnvas = GameObject.Find("level1s3/Canvas");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         observeCamera = GameObject.FindGameObjectWithTag("ObserveCamera");
+        S3Camera = GameObject.FindGameObjectWithTag("MainCamera1");
+        diaryCamera = GameObject.Find("level1s3/observeDiaryCamera");
         codeboxCanvas = GameObject.Find("CodeBox/Canvas").GetComponent<Canvas>();
         trigger1 = GameObject.FindGameObjectWithTag("TriggerArea1");
+        //problemcacnvas.SetActive(false);
+
+        codebox = GameObject.Find("CodeBox/Canvas").GetComponent<ClickBox>();
+        observeCamera.GetComponent<AudioListener>().enabled = false;
+        observeCamera.GetComponent<Camera>().enabled = false;
+        S3Camera.GetComponent<AudioListener>().enabled = false;
+        S3Camera.GetComponent<Camera>().enabled = false;
+
+        fps2.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        ismainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().isActiveAndEnabled;
+        ismainCam = mainCamera.GetComponent<Camera>().isActiveAndEnabled;
         //timer += Time.deltaTime;
-        
+        levelclear = codebox.levelclear;
         if (m_hour >= 0 && m_minute >= 0 && m_second >= 0 && m_millisecond >= 0 && isbegin)
             m_millisecond -= (int)(Time.deltaTime*1000);
         if (m_millisecond < 0) { m_millisecond += 1000; m_second -= 1;}
         if (m_second < 0) { m_second += 60; m_minute -= 1; }
         if (m_minute < 0) { m_minute += 60; m_hour -= 1; }
         
+
+        
 	}
+
+    void ChangeTime(float m)
+    {
+        int totaltime = m_hour * 3600000 + m_minute * 60000 + m_second *1000 + m_millisecond;
+        totaltime = (int)(Mathf.Round((float)((double)(totaltime)*m)));
+        m_millisecond = totaltime % 1000;
+        m_second = totaltime / 1000 % 60;
+        m_minute = totaltime / 1000 / 60 % 60;
+        m_hour = totaltime / 1000 / 60 / 60;
+        
+    }
 
     void OnGUI()
     {
@@ -47,6 +81,11 @@ public class MainCanvasSet : MonoBehaviour {
             remaintime = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D3}", m_hour, m_minute, m_second, m_millisecond);
         else remaintime = "时间到了！";
         GUI.TextArea(new Rect(Screen.width - 100, 7, 90, 30), remaintime);
+        if (levelclear)
+        {
+            GUI.Button(new Rect(0, Screen.height - 100, Screen.width, 100), "我：\n 谢天谢地，门开了。");
+            
+        }
         if (!trigger1.gameObject.activeSelf && !isbegin)
         {
             istalking = true;
@@ -65,13 +104,28 @@ public class MainCanvasSet : MonoBehaviour {
             if (GUI.Button(new Rect(10, 10, 50, 50), "Cross!"))
             {
                 Debug.Log("Next Scene");
+                
+                fps1.SetActive(false);
+                fps2.SetActive(true);
+                diaryCamera.SetActive(false);
+                
+                S3Camera.SetActive(true);
+                S3Camera.GetComponent<AudioListener>().enabled = true;
+                S3Camera.GetComponent<Camera>().enabled = true;
+                //mainCamera.SetActive(false);
+                mainCamera.GetComponent<AudioListener>().enabled = false;
+                mainCamera.GetComponent<Camera>().enabled = false;
+
+                
+                ChangeTime(15f);
+                
             }
             if (GUI.Button(new Rect(70, 10, 50, 50), "Bag"))
             {
                 Debug.Log("bag");
             }
         }
-        else
+        else if (observeCamera.GetComponent<Camera>().enabled)
         {
             if (GUI.Button(new Rect(10, 10, 50, 50), "Return"))
             {
@@ -80,7 +134,48 @@ public class MainCanvasSet : MonoBehaviour {
                 observeCamera.GetComponent<Camera>().enabled = false;
                 mainCamera.GetComponent<AudioListener>().enabled = true;
                 mainCamera.GetComponent<Camera>().enabled = true;
+                fps1.SetActive(true);
+                //problemcacnvas.SetActive(false);
                 codeboxCanvas.worldCamera = mainCamera.GetComponent<Camera>();
+            }
+        }
+        else if(S3Camera.GetComponent<Camera>().enabled)
+        {
+           
+            if (GUI.Button(new Rect(10, 10, 50, 50), "Cross!"))
+            {
+                Debug.Log("Next Scene");
+                fps1.SetActive(true);
+                fps2.SetActive(false);
+                S3Camera.GetComponent<AudioListener>().enabled = false;
+                S3Camera.GetComponent<Camera>().enabled = false;
+                mainCamera.GetComponent<AudioListener>().enabled = true;
+                mainCamera.GetComponent<Camera>().enabled = true;
+                
+                
+
+                ChangeTime(1f/15f);
+
+            }
+            if (GUI.Button(new Rect(70, 10, 50, 50), "Bag"))
+            {
+                Debug.Log("bag");
+            }
+        }
+        else if (diaryCamera.GetComponent<Camera>().enabled)
+        {
+            if (GUI.Button(new Rect(10, 10, 50, 50), "Return"))
+            {
+                Debug.Log("return");
+                diaryCamera.GetComponent<AudioListener>().enabled = false;
+                diaryCamera.GetComponent<Camera>().enabled = false;
+                diaryCamera.SetActive(false);
+                S3Camera.GetComponent<AudioListener>().enabled = true;
+                S3Camera.GetComponent<Camera>().enabled = true;
+                S3Camera.SetActive(true);
+                fps2.SetActive(true);
+
+                //codeboxCanvas.worldCamera = mainCamera.GetComponent<Camera>();
             }
         }
     }
