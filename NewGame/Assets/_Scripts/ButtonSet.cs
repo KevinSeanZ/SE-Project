@@ -13,6 +13,7 @@ public class ButtonSet : MonoBehaviour {
     private Button begingamebt;
     private Button settingbt;
     private Button continuebt;
+    private Button exitbt;
     // Use this for initialization
     
 
@@ -22,8 +23,11 @@ public class ButtonSet : MonoBehaviour {
         begingamebt = GameObject.Find("Canvas/BeginGameBt").GetComponent<Button>();
         settingbt = GameObject.Find("Canvas/GameSetBt").GetComponent<Button>();
         continuebt = GameObject.Find("Canvas/ContinueGameBt").GetComponent<Button>();
+        exitbt = GameObject.Find("Canvas/ExitGameBt").GetComponent<Button>();
+
         begingamebt.onClick.AddListener(BeginNewGame);
         settingbt.onClick.AddListener(SetGame);
+        exitbt.onClick.AddListener(ExitGame);
 	}
 	
 	// Update is called once per frame
@@ -36,6 +40,10 @@ public class ButtonSet : MonoBehaviour {
         SceneManager.LoadScene("Stage_1_Scene_1");
     }
 
+    void ExitGame()
+    {
+        Application.Quit();
+    }
    
     void SetGame()
     {

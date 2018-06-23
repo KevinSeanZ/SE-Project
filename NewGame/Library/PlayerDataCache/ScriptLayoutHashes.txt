@@ -237,7 +237,7 @@ cac5093fb1baf037bd671ecbc6727828 Assembly-CSharp.dll:UnityStandardAssets.ImageEf
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.Utility.ObjectResetter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AnClkBt
 30db6bf1abfbd17c6cdd1385b9eba6ca Assembly-CSharp.dll:UnityStandardAssets.ImageEffects.DepthOfField
-a72aa385bb9e15e2ab1faa996d73e9d9 Assembly-CSharp.dll:.MainCanvasSet
+94b782c7e728e28ce1b8cfe25343dfd3 Assembly-CSharp.dll:.MainCanvasSet
 de7f763456df1895412447b8db04093e Assembly-CSharp.dll:.PlayerController
 8dbcb817491f3020e4404301689d2624 Assembly-CSharp.dll:.ButtonSet
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.ImageEffects.PostEffectsHelper

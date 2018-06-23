@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainCanvasSet : MonoBehaviour {
     private bool ismainCam = true;
     private bool isbegin = false;
+    private bool isBag = false;
     private GameObject mainCamera;
     private GameObject diaryCamera;
     private GameObject observeCamera;
@@ -22,7 +24,8 @@ public class MainCanvasSet : MonoBehaviour {
     public int m_second;
     public int m_minute;
     public int m_hour;
-
+    public Texture []bag_item;
+    [HideInInspector]
     public bool istalking = false;
     // Use this for initialization
 
@@ -76,16 +79,24 @@ public class MainCanvasSet : MonoBehaviour {
     void OnGUI()
     {
         //GUI.Button(new Rect(Screen.width - 60, 10 ,50 , 50), "timer");
+        
         string remaintime;
         if (m_hour >= 0 && m_minute >= 0 && m_second >= 0 && m_millisecond >= 0)
             remaintime = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D3}", m_hour, m_minute, m_second, m_millisecond);
         else remaintime = "时间到了！";
-        GUI.TextArea(new Rect(Screen.width - 100, 7, 90, 30), remaintime);
+        GUI.TextArea(new Rect(Screen.width - 100, 10, 90, 30), remaintime);
         if (levelclear)
         {
             GUI.Button(new Rect(0, Screen.height - 100, Screen.width, 100), "我：\n 谢天谢地，门开了。");
             
         }
+        //only save progress at start
+        if (!isbegin)
+            if (GUI.Button(new Rect(Screen.width - 160, 10, 50, 50),"Save"))
+            {
+                Debug.Log("Save");
+            }
+        //-----------------------------------------------------------------
         if (!trigger1.gameObject.activeSelf && !isbegin)
         {
             istalking = true;
@@ -123,6 +134,12 @@ public class MainCanvasSet : MonoBehaviour {
             if (GUI.Button(new Rect(70, 10, 50, 50), "Bag"))
             {
                 Debug.Log("bag");
+                isBag = isBag ? false : true;
+
+            }
+            if (GUI.Button(new Rect(130,10,50,50),"Back"))
+            {
+                SceneManager.LoadScene("StartScene");
             }
         }
         else if (observeCamera.GetComponent<Camera>().enabled)
@@ -160,6 +177,11 @@ public class MainCanvasSet : MonoBehaviour {
             if (GUI.Button(new Rect(70, 10, 50, 50), "Bag"))
             {
                 Debug.Log("bag");
+                isBag = isBag?false:true;
+            }
+            if (GUI.Button(new Rect(130, 10, 50, 50), "Back"))
+            {
+                SceneManager.LoadScene("StartScene");
             }
         }
         else if (diaryCamera.GetComponent<Camera>().enabled)
@@ -178,7 +200,25 @@ public class MainCanvasSet : MonoBehaviour {
                 //codeboxCanvas.worldCamera = mainCamera.GetComponent<Camera>();
             }
         }
+        
+        if (isBag)  ShowBag();
+        
     }
 
+    void ShowBag()
+    {
+        float w = Screen.width / 9;
+        for (int i = 0; i < 5; i++)
+        {
+            Rect TextureRect = new Rect((i + 2) * w, Screen.height - 2 * w, w, w);
+            if (bag_item[i]) GUI.DrawTexture(TextureRect, bag_item[i]);
+            if (GUI.Button(TextureRect, ""))
+            {
+                //Debug.Log(i + "th button!");
+                if (bag_item[i]) Debug.Log(bag_item[i].name);
+                isBag = false;
+            }
+        }
+    }
     
 }
