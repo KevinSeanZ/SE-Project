@@ -519,6 +519,7 @@ MonoBehaviour:
   m_second: 0
   m_minute: 0
   m_hour: 0
+  bag_item: []
   istalking: 0
 --- !u!1001 &1738953662
 Prefab:

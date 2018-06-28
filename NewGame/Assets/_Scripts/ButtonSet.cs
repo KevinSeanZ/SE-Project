@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+
 public class ButtonSet : MonoBehaviour {
 
     public GameObject sphere1;
@@ -16,7 +18,8 @@ public class ButtonSet : MonoBehaviour {
     private Button exitbt;
     // Use this for initialization
     
-
+    [HideInInspector]
+    public static int save_load;
 
     void Start() {
 
@@ -28,6 +31,7 @@ public class ButtonSet : MonoBehaviour {
         begingamebt.onClick.AddListener(BeginNewGame);
         settingbt.onClick.AddListener(SetGame);
         exitbt.onClick.AddListener(ExitGame);
+        continuebt.onClick.AddListener(ConGame);
 	}
 	
 	// Update is called once per frame
@@ -50,5 +54,11 @@ public class ButtonSet : MonoBehaviour {
 
         
         SceneManager.LoadScene("GUI_settings",LoadSceneMode.Single);
+    }
+
+    void ConGame()
+    {
+        save_load = 0;
+        SceneManager.LoadScene("ContinueGame");
     }
 }

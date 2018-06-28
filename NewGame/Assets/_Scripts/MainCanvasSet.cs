@@ -27,6 +27,8 @@ public class MainCanvasSet : MonoBehaviour {
     public Texture []bag_item;
     [HideInInspector]
     public bool istalking = false;
+    //[HideInInspector]
+    //public int saveStage;
     // Use this for initialization
 
     
@@ -87,7 +89,8 @@ public class MainCanvasSet : MonoBehaviour {
         GUI.TextArea(new Rect(Screen.width - 100, 10, 90, 30), remaintime);
         if (levelclear)
         {
-            GUI.Button(new Rect(0, Screen.height - 100, Screen.width, 100), "我：\n 谢天谢地，门开了。");
+            if (GUI.Button(new Rect(0, Screen.height - 100, Screen.width, 100), "我：\n 谢天谢地，门开了。"))
+                SceneManager.LoadScene("SampleScene");
             
         }
         //only save progress at start
@@ -95,6 +98,8 @@ public class MainCanvasSet : MonoBehaviour {
             if (GUI.Button(new Rect(Screen.width - 160, 10, 50, 50),"Save"))
             {
                 Debug.Log("Save");
+                ButtonSet.save_load = 1;
+                SceneManager.LoadScene("ContinueGame");
             }
         //-----------------------------------------------------------------
         if (!trigger1.gameObject.activeSelf && !isbegin)

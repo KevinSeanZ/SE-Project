@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public bool smooth;
         public float smoothTime = 5f;
         public bool lockCursor = true;
-
+            
 
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
@@ -25,16 +25,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
+            
         }
 
 
         public void LookRotation(Transform character, Transform camera)
         {
+            //Debug.Log("LookRotation");
+            UpdateCursorLock();
             if (Cursor.visible) return;
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
 
-            
+           
 
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
@@ -54,13 +57,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 character.localRotation = m_CharacterTargetRot;
                 camera.localRotation = m_CameraTargetRot;
             }
-
-            UpdateCursorLock();
+            
+            
         }
 
         public void SetCursorLock(bool value)
         {
             lockCursor = value;
+            Debug.Log(value);
             if(!lockCursor)
             {//we force unlock the cursor if the user disable the cursor locking helper
                 Cursor.lockState = CursorLockMode.None;
@@ -71,20 +75,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public void UpdateCursorLock()
         {
             //if the user set "lockCursor" we check & properly lock the cursos
+            //Debug.Log(lockCursor);
             if (lockCursor)
                 InternalLockUpdate();
         }
 
         private void InternalLockUpdate()
         {
+            Debug.Log("InternalLockUpdate");
             if (Input.GetMouseButtonUp(0) && m_cursorIsLocked)
             //if(Input.GetKeyUp(KeyCode.Escape))
             {
                 m_cursorIsLocked = false;
+                Debug.Log("Mouse 0");
             }
             else if(Input.GetMouseButtonUp(1))
             {
                 m_cursorIsLocked = true;
+                Debug.Log("Mouse 1");
             }
 
             if (m_cursorIsLocked)

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 0bc3590a0dd68e748a4c2661e4881a3c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - r3_s1_pic1: {fileID: 2100000, guid: 36a07bdc09bba0e428b001eac8cc8575, type: 2}
+  - r3_s1_pic2: {fileID: 2100000, guid: a9bba246fa941644f8b249868e9bf282, type: 2}
+  - r3_s2_pic1: {instanceID: 0}
+  - r3_s2_pic2: {instanceID: 0}
+  - r3_s3_pic1: {instanceID: 0}
+  - r3_s3_pic2: {instanceID: 0}
+  - r3_s4_pic1: {instanceID: 0}
+  - r3_s4_pic2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
